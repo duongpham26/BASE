@@ -2,6 +2,8 @@
 #include <conio.h>
 #include <math.h>
 
+int loaitg(int, int, int);
+
 class tamgiac {
 private:
 	float a, b, c;
@@ -52,9 +54,19 @@ int tamgiac::loaitg() {
 }
 
 float tamgiac::dientich() {
-	float p;
-	p = (a + b + c) / 2;
-	return sqrt(p*(p - a)*(p - b)*(p - c));
+	float px;
+	px = (a + b + c) / 2;
+	return sqrt(px*(px - a)*(px - b)*(px - c));
+}
+
+int loaitg(int a, int b, int c) {
+	if (a == b || b == c || a == b) {
+		if (a == b || c == b) return 1;
+		else if (a*a == b * b + c * c|| b * b == a * a + c * c || c * c == b * b + a * a) return 2;
+		else return 3;
+	} 
+	else if (a*a == b * b + c * c || b * b == a * a + c * c || c * c == b * b + a * a) return 4;
+	else return 5;
 }
 
 int main() {
