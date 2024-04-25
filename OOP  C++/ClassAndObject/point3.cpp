@@ -35,7 +35,7 @@ void point::display(char *message) {
 int main() {
    point p;
    p.init(2, 4);
-   p.display("Point p-");
+   // p.display("Point p-");
 
 
    return 0;
