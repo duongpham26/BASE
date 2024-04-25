@@ -10,6 +10,7 @@ class point {
       void concide (point pt);
       void concide (point *pt);
       // void concide (point &pt);
+      point symetry ();
 };
 
 void point::init (int a, int b) {
@@ -37,6 +38,13 @@ void point::concide(point *pt) {
 //    std::cout << "Toa do pt: " << pt.x << " " << pt.y << "\n";
 // }
 
+point point::symetry () {
+   point res;
+   res.x = -x;
+   res.y = -y;
+   return res;
+}
+
 int main() {
    point p;
    p.init(2, 4);
@@ -48,6 +56,10 @@ int main() {
    p2.display();
    p2.concide(p);
    p2.concide(&p3);
+
+   point p4;
+   p4 = p2.symetry();
+   p4.display();
 
    return 0;
 }
