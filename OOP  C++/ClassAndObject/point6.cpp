@@ -24,7 +24,19 @@ void point::display () {
 
 int main () {
    // point b[10] -> error
-   
    point b[10];
+
+   point p1(9,2);
+   std::cout << "p1 ";
+   p1.display();
+   point *p2 = &p1;
+   std::cout << "p2 ";
+   p2->display();
+   p2->move(-4,8);
+   std::cout << "p1 ";
+   p1.display();
+
+
+
    return 0;
 }
