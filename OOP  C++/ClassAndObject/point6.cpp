@@ -4,8 +4,10 @@
 class point {
       int x, y;
    public:
-      point () {x = 0; y = 0;} // kh con error
-      point (int ox, int oy) {
+      // point () {x = 0; y = 0;} // kh con error 
+   
+
+      point (int ox = 0, int oy = 0) {
          x = ox; y =oy;
       }
       void move (int, int);
