@@ -42,6 +42,10 @@ int main () {
    ptr->display();
    delete ptr;
 
+   point &ra = p1;
+   std::cout <<"ra ";
+   ra.display();
+
 
 
    return 0;
