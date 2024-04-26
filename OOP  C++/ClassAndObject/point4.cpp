@@ -3,6 +3,7 @@
 
 class point {
       int x, y;
+      int *a;
    public: 
       void init (int=0, int=0);
       void display ();
@@ -18,6 +19,7 @@ void point::init (int a, int b) {
 }
 
 void point::display () {
+   std:: cout << "Dia chi: " << this <<"\n";
    std::cout << "Toa do: " << x << " " << y << "\n";
 }
 
@@ -27,6 +29,7 @@ void point::display (char *message) {
 }
 
 void point::concide(point pt) {
+   std:: cout << "Dia chi pt: " << this <<"\n";
    std::cout << "Toa do pt: " << pt.x << " " << pt.y << "\n";
 }
 
@@ -46,20 +49,20 @@ point point::symetry () {
 }
 
 int main() {
-   point p;
-   p.init(2, 4);
-   point p3;
-   p3.init(3, 4);
+   // point p;
+   // p.init(2, 4);
+   // point p3;
+   // p3.init(3, 4);
 
-   point p2;
-   p2.init(9, 2);
-   p2.display();
-   p2.concide(p);
-   p2.concide(&p3);
+   // point p2;
+   // p2.init(9, 2);
+   // p2.display();
+   // p2.concide(p);
+   // p2.concide(&p3);
 
-   point p4;
-   p4 = p2.symetry();
-   p4.display();
+   // point p4;
+   // p4 = p2.symetry();
+   // p4.display();
 
    return 0;
 }
