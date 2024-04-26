@@ -36,6 +36,12 @@ int main () {
    std::cout << "p1 ";
    p1.display();
 
+   point *ptr;
+   ptr = new point;
+   std::cout << "prt ";
+   ptr->display();
+   delete ptr;
+
 
 
    return 0;
