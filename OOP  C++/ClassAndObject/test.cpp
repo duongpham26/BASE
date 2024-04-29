@@ -30,4 +30,5 @@ int main() {
 
 void fct(int p) {
    test t(2*p);
+
 }
