@@ -25,6 +25,7 @@ void point::move (int dx, int dy) {
    x += dx; y +=dy;
 }
 
+
 void point::display () {
    std::cout << "\nDisplay doi tuong tai:"  << this << "\n";
    std::cout << "Toa do: " << x << " " << y << "\n";
@@ -38,14 +39,17 @@ point fct(point a) {
 
 int main () {
    point a(1,2);
+   const point b(2,2);
+   // b.display(); lỗi
    a.display();
+   
 
    // std::cout << "1\n";
    // point b(a);
    // b.display();
 
-   point b = fct(a);
-   b.display();
+   // point b = fct(a);
+   // b.display();
    
    return 0;
 }
