@@ -11,9 +11,7 @@ public:
    vector(int size, float *a);
    vector(const vector &);
    vector &operator=(vector &b);
-   void dis(vector c) {
-      std::cout << "hihi";
-   };
+   float &operator[](int);
    void display();
    ~vector();
 };
@@ -68,6 +66,11 @@ vector &vector::operator=(vector &b) {
    return *this;
 }
 
+float &vector::operator[](int i) {
+   std::cout << "Tao do la thu i: " << v[i] << "\n";
+   return v[i];
+}
+
 void vector::display() {
    std::cout << "Doi tuong tai: " << this << "\n";
    std::cout << " n = " << n << " - ";
@@ -92,7 +95,8 @@ int main() {
 
    vector v2=v3;
    // v2=v1;
-   v2.dis(v3);
+   v2.display();
+   v2[1] = 5;
    v2.display();
    return 0;
 }
