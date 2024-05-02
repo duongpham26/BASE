@@ -43,6 +43,6 @@ int main() {
    complex a(1, 2);
 
    float x = a;
-   cout << x;
+   cout << a;
    return 0;
 }
