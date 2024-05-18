@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <conio.h>
-#include "./../libary/lib.c"
+#include "./../library/lib.h"
 
 void swap(int *a, int *b) {
    int temp = *a;
