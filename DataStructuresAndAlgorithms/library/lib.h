@@ -5,7 +5,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-
 void printArray(int *arr, int N);
 void randArray(int *arr, int N, int min, int max);
 
@@ -20,5 +19,6 @@ void randArray(int *arr, int N, int min, int max) {
       arr[i] = rand() % (max - min + 1) + min;
    }
 }
+
 
 #endif

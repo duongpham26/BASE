@@ -4,4 +4,7 @@ test.c
 EBOOK/
 test.md
 DA/
-NodeJS/
+
+THOOP/
+node_modules/
+.env
