@@ -49,10 +49,7 @@ int main()
    quickSort(arr, 0, n - 1);
    // Print the sorted array
    cout << "Sorted Array\n";
-   for (int i = 0; i < n; i++)
-   {
-      cout << arr[i] << " ";
-   }
+   printArray(arr, n);
    return 0;
 }
 // This Code is Contributed By Diwakar Jha
