@@ -23,7 +23,7 @@ void rotateLL(AVLtree &T) {
 	switch (T1->Bal) {
 		case LH: T->Bal = EH;
 			T1->Bal = EH; break;
-		case EH: T1->Bal = LH;
+		case EH: T->Bal = LH;
 			T1->Bal = RH; break;
 	}
 	T = T1;
@@ -36,7 +36,7 @@ void rotateRR(AVLtree &T) {
 	switch (T1->Bal) {
 	case RH: T->Bal = EH; break;
 		T1->Bal = EH; break;
-	case EH: T1->Bal = RH; break;
+	case EH: T->Bal = RH; break;
 		T1->Bal = LH; break;
 	}
 	T = T1;

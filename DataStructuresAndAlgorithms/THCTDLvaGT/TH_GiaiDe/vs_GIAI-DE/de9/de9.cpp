@@ -11,8 +11,6 @@ struct Node {
 
 struct Stack {
 	Node* top;
-
-	Stack() : top(nullptr) {}
 };
 
 void Init(Stack &stack)

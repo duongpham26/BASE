@@ -8,3 +8,6 @@ DA/
 THOOP/
 node_modules/
 .env
+package-lock.json
+
+Browse.VC.opendb

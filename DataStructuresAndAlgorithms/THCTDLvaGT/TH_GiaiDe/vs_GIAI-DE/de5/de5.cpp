@@ -84,7 +84,7 @@ void RemoveLast(DList& l) {
 		p = l.last;
 		l.last = l.last->prev;
 		l.last->next = NULL;
-		free(p);
+		delete p;
 		if (l.first == NULL) l.last = NULL;
 		else l.first->prev = NULL;
 	}
@@ -181,8 +181,6 @@ void Duyet(DList list)
 	}
 }
 
-
-
 int main() {
 	node *SV;
 	DList list;
@@ -199,6 +197,7 @@ int main() {
 	}*/
 
 	QuickSort(list);
+	RemoveLast(list);
 	Duyet(list);
 
 	return 0;

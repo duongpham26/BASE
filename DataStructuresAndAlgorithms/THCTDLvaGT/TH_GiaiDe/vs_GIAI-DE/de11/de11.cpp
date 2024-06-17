@@ -18,19 +18,19 @@ void Init(TREE &root)
 	//  root->right = NULL;
 }
 
-NODE* GetNode(int x)
-{
-	NODE* p = new NODE;
-	if (p != NULL)
-	{
-		p->left = NULL;
-		p->right = NULL;
-		p->data = x;
-	}
-	return (p);
-}
+//NODE* GetNode(int x)
+//{
+//	NODE* p = new NODE;
+//	if (p != NULL)
+//	{
+//		p->left = NULL;
+//		p->right = NULL;
+//		p->data = x;
+//	}
+//	return (p);
+//}
 
-int  InsertTree(TREE &T, int x)
+int InsertTree(TREE &T, int x)
 {
 	if (T != NULL)
 	{
@@ -50,6 +50,8 @@ int  InsertTree(TREE &T, int x)
 		return 1;
 	}
 }
+
+
 
 void searchStandFor(TREE &p, TREE &q)
 {
@@ -80,6 +82,9 @@ int delNode(TREE &T, int X)
 			searchStandFor(p, T->right);
 	delete p;
 }
+
+
+
 
 void NLR(TREE root)
 {

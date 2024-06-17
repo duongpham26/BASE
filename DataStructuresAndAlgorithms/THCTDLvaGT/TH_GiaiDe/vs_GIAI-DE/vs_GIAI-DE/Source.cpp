@@ -116,7 +116,5 @@ int main() {
 	XuatThongTinMotSV(SV[1]);
 	XuatThongTinMotSV(SV[2]);
 	XuatThongTinMotSV(SV[3]);
-
-
 	return 0;
 }

@@ -63,6 +63,7 @@ void shellsort(int a[], int n, int h[], int k)
 	}
 }
 
+
 int main() {
 	srand(time(NULL));
 	const int n = 10000;
@@ -71,6 +72,7 @@ int main() {
 	writeArrayToFile(n, "file.txt");
 
 	readArrayFromFile(a, n, "file.txt");
+
 	const int k = 12;
 	int h[k];
 	h[0] = 1;
@@ -85,3 +87,44 @@ int main() {
 	
 	return 0;
 }
+
+//#include <iostream>
+//#include <fstream>
+//#include <stdlib.h>
+//#include <time.h>
+//using namespace std;
+//
+//
+//void writefile(int size) {
+//	ofstream outfile("teat.txt");
+//	for (int i = 0; i < size; i++) {
+//		outfile << rand() % size << " ";
+//	}
+//}
+//
+//void readfile(int size, int *a) {
+//	ifstream infile("teat.txt");
+//	for (int i = 0; i < size; i++) {
+//		infile >> a[i];
+//	}
+//	infile.close();
+//}
+//
+//void printarray(int *a, int size) {
+//	for (int i = 1; i < size; i++) {
+//		cout << a[i] << " ";
+//	}
+//}
+//
+//ostream outfile()
+//
+//
+//int main() {
+//	srand(time(NULL));
+//	int a[10000];
+//	writefile(10000);
+//	readfile(10000, a);
+//	printarray(a, 10000);
+//
+//	return 0;
+//}
