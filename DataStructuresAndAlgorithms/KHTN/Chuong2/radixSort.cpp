@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cstdlib> // for rand() and srand()
 #include <ctime>
 #include <math.h>
@@ -65,7 +65,7 @@ int main() {
 	//srand(time(0));
 	clock_t start, end;
 	double duration;
-	const int n = 1000000;
+	const int n = 10000000;
 	int *a = new int[n];
 	randomArray(a, n);
 	start = clock();
