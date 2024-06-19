@@ -35,18 +35,28 @@ void countingSort(int *a, int size) {
 	delete b;
 }
 
+int getMax(int *a, int size) {
+	int max = a[0];
+	for (int i = 1; i < size; i++) {
+		if (a[i] > max) max = a[i];
+	}
+	return max;
+}
+
 void countingSortUpgrade(int *a, int size) {
-	int *f = new int[size]();
+	int max = getMax(a, size);
+	int sizeArrayF = max + 1;
+	int *f = new int[sizeArrayF]();
 	int *b = new int[size];
 
 	for (int i = 0; i < size; i++) {
 		f[a[i]]++;
 	}
-	for (int i = 1; i < size; i++) {
+	for (int i = 1; i < sizeArrayF; i++) {
 		f[i] = f[i - 1] + f[i];
 	}
 	for (int i = size - 1; i >= 0; i--) {
-		b[f[a[i]]- 1] = a[i];
+		b[f[a[i]] - 1] = a[i];
 		f[a[i]]--;
 	}
 	for (int i = 0; i < size; i++) {
@@ -60,12 +70,12 @@ int main() {
 	//srand(time(0));
 	clock_t start, end;
 	double duration;
-	const int n = 100000;
+	const int n = 1000000000;
 	int *a = new int[n];
 	randomArray(a, n);
 	start = clock();
-	countingSort(a, n);
-	//countingSortUpgrade(a, n);
+	// countingSort(a, n);
+	countingSortUpgrade(a, n);
 	end = clock();
 
 	//printArray(a, n);

@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <cstdlib> // for rand() and srand()
-#include <ctime> 
+#include <ctime>
+#include <math.h>
 using namespace std;
 
 void randomArray(int *a, int size) {
@@ -16,63 +17,63 @@ void printArray(int *a, int size) {
 	cout << "\n";
 }
 
-void countingSort(int *a, int size) {
-	int *count = new int[size](); // mảng count có size phần tử 0
-	int *b = new int[size];
-	for (int i = 0; i < size - 1; i++) {
-		for (int j = i + 1; j < size; j++) {
-			if (a[j] < a[i]) count[i]++;
-			else count[j]++;
-		}
+int getMax(int *a, int size) {
+	int max = a[0];
+	for (int i = 1; i < size; i++) {
+		if (a[i] > max) max = a[i];
 	}
-	for (int i = 0; i < size; i++) {
-		b[count[i]] = a[i];
-	}
-	for (int i = 0; i < size; i++) {
-		a[i] = b[i];
-	}
-	delete count;
-	delete b;
+	return max;
 }
 
-void countingSortUpgrade(int *a, int size) {
-	int *f = new int[size]();
-	int *b = new int[size];
+int digit(int a, int k) {
+	int i = 0;
+	int d;
+	while (i <= k) {
+		d = a % 10;
+		a /= 10;
+		i++;
+	}
+	return d;
+}
 
-	for (int i = 0; i < size; i++) {
-		f[a[i]]++;
-	}
-	for (int i = 1; i < size; i++) {
-		f[i] = f[i - 1] + f[i];
-	}
+void sort(int *a, int k, int size) {
+	const int RADIX = 10;
+	int j;
+	int *f = new int[RADIX]();
+	int *b = new int[size];
+	for (int i = 0; i < size; i++) f[digit(a[i], k)]++;
+	for (int i = 1; i < RADIX; i++) f[i] += f[i - 1];
 	for (int i = size - 1; i >= 0; i--) {
-		b[f[a[i]]- 1] = a[i];
-		f[a[i]]--;
+		j = digit(a[i], k);
+		b[f[j] - 1] = a[i];
+		f[j]--;
 	}
-	for (int i = 0; i < size; i++) {
-		a[i] = b[i];
-	}
-	delete b;
+	for (int i = 0; i < size; i++) a[i] = b[i];
 	delete f;
+	delete b;
 }
 
 void LSDRadixSort(int *a, int size) {
-
+	int max = getMax(a, size);
+	int d = log10(double(max)) + 1;
+	for (int k = 0; k < d; k++) {
+		sort(a, k, size);
+	}
 }
 
 int main() {
 	//srand(time(0));
 	clock_t start, end;
 	double duration;
-	const int n = 100000;
+	const int n = 1000000;
 	int *a = new int[n];
 	randomArray(a, n);
 	start = clock();
-	countingSort(a, n);
+	//countingSort(a, n);
 	//countingSortUpgrade(a, n);
+	LSDRadixSort(a, n);
 	end = clock();
 
-	//printArray(a, n);
 	duration = ((double)(end - start)) / CLOCKS_PER_SEC;
 	cout << "Time: " << duration;
 	delete a;
