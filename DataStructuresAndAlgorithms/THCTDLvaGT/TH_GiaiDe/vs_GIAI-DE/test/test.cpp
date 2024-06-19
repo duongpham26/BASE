@@ -61,17 +61,97 @@ void LSDRadixSort(int *a, int size) {
 	}
 }
 
+// radix sort phan theo lo
+void sort2(int *a, int d, int size) {
+	int **L= new int *[10]; // Lô gồm 10 cột(digit 0-9) và mỗi cột 100 phần tử 
+	for (int i = 0; i < 10; i++) {
+		L[i] = new int[size];
+	}
+	int M[10] = {0}; // Lưu số phần tử ở mỗi cột L
+	int *b = new int[size];
+	int i = 0, k;
+	while (i < size) {
+		k = digit(a[i], d);
+		L[k][M[k]] = a[i];
+		M[k]++;
+		i++;
+	}
+	int x = 0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < M[i]; j++) {
+			b[x] = L[i][j];
+			x++;
+		}
+	}
+	for (int i = 0; i < size; i++) {
+		a[i] = b[i];
+	}
+	delete b;
+	for (int i = 0; i < 10; i++) {
+		delete L[i];
+	}
+	delete L;
+}
+
+void radixsort2(int *a, int size) {
+	int max = getMax(a, size);
+	int d = log10(double(max)) + 1;
+	for (int k = 0; k < d; k++) {
+		sort2(a, k, size);
+	}
+}
+
+void sort3(int *a, int d, int size) {
+	int **L = new int *[10];
+	for (int i = 0; i < 10; i++) {
+		L[i] = new int[size];
+	}
+	int M[10] = { 0 };
+	int *b = new int[size];
+	int i = 0, k;
+	while (i < size) {
+		k = digit(a[i], d);
+		L[k][M[k]] = a[i];
+		M[k]++;
+		i++;
+	}
+	int x = 0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < M[i]; j++) {
+			b[x] = L[i][j];
+			x++;
+		}
+	}
+	for (int i = 0; i < size; i++) {
+		a[i] = b[i];
+	}
+	delete b;
+	for (int i = 0; i < 10; i++) {
+		delete L[i];
+	}
+	delete L;
+}
+
+void radixsort3(int *a, int size) {
+	int max = getMax(a, size);
+	int d = log10(double(max)) + 1;
+	for (int k = 0; k < d; k++) {
+		sort2(a, k, size);
+	}
+}
+
 int main() {
 	//srand(time(0));
 	clock_t start, end;
 	double duration;
-	const int n = 1000000;
+	const int n = 10000;
 	int *a = new int[n];
 	randomArray(a, n);
 	start = clock();
-	LSDRadixSort(a, n);
+	//LSDRadixSort(a, n);
+	radixsort2(a, n);
 	end = clock();
-
+	printArray(a, n);
 	duration = ((double)(end - start)) / CLOCKS_PER_SEC;
 	cout << "Time: " << duration;
 	delete a;
