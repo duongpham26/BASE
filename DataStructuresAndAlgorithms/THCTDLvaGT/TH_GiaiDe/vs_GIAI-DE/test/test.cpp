@@ -102,15 +102,16 @@ void radixsort2(int *a, int size) {
 }
 
 void sort3(int *a, int d, int size) {
-	int **L = new int *[10];
-	for (int i = 0; i < 10; i++) {
-		L[i] = new int[size];
-	}
+	int *L[10];
 	int M[10] = { 0 };
 	int *b = new int[size];
 	int i = 0, k;
 	while (i < size) {
 		k = digit(a[i], d);
+		if (M[k] == 0)
+		{
+			L[k] = new int[size];
+		}
 		L[k][M[k]] = a[i];
 		M[k]++;
 		i++;
@@ -125,18 +126,20 @@ void sort3(int *a, int d, int size) {
 	for (int i = 0; i < size; i++) {
 		a[i] = b[i];
 	}
-	delete b;
+
+	delete[] b;
+
 	for (int i = 0; i < 10; i++) {
-		delete L[i];
+		if(M[i] != 0) delete L[i];
 	}
-	delete L;
+
 }
 
 void radixsort3(int *a, int size) {
 	int max = getMax(a, size);
 	int d = log10(double(max)) + 1;
 	for (int k = 0; k < d; k++) {
-		sort2(a, k, size);
+		sort3(a, k, size);
 	}
 }
 
@@ -144,12 +147,11 @@ int main() {
 	//srand(time(0));
 	clock_t start, end;
 	double duration;
-	const int n = 10000;
+	const int n = 10;
 	int *a = new int[n];
 	randomArray(a, n);
 	start = clock();
-	//LSDRadixSort(a, n);
-	radixsort2(a, n);
+	radixsort3(a, n);
 	end = clock();
 	printArray(a, n);
 	duration = ((double)(end - start)) / CLOCKS_PER_SEC;
