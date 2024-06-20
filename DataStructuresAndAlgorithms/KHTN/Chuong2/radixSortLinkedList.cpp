@@ -1,7 +1,8 @@
-﻿#include <iostream>
+#include <iostream>
 #include <conio.h>
 #include <cstdlib> // for rand() and srand()
 #include <ctime>
+#include <math.h>
 using namespace std;
 
 struct node
@@ -169,7 +170,7 @@ int main()
 	clock_t start, end;
 	double duration;
 
-	const int n = 10000000;
+	const int n = 100000;
 	list l;
 	init(l);
 	randomList(l, n);

@@ -147,13 +147,13 @@ int main() {
 	//srand(time(0));
 	clock_t start, end;
 	double duration;
-	const int n = 10;
+	const int n = 10000000;
 	int *a = new int[n];
-	randomArray(a, n);
+	// randomArray(a, n);
 	start = clock();
 	radixsort3(a, n);
 	end = clock();
-	printArray(a, n);
+	// printArray(a, n);
 	duration = ((double)(end - start)) / CLOCKS_PER_SEC;
 	cout << "Time: " << duration;
 	delete a;
