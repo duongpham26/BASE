@@ -6,25 +6,25 @@
  */
 
 // var headingNode = document.getElementById("heading");
-// // console.log(heading); // dev tool tự hiểu và trả về tag (heading)
-// // console.log({ element: heading });
+// console.log(heading); // dev tool tự hiểu và trả về tag (heading)
+// console.log({ element: heading });
 
 // var headingElementsClass = document.getElementsByClassName("heading"); //=> trả về collection
 // // HTML collection
-// //console.log(headingElementsClass); // trả về giống mảng nhưng không có phương thức map, reduce,...
+// console.log(headingElementsClass); // trả về giống mảng nhưng không có phương thức map, reduce,...
 
 // // getElementByTagName => trả về collection
 
-// // CSS selector
+// CSS selector
 // var selector = document.querySelector('.heading');
 // var selectors = document.querySelectorAll('.heading'); // => trả về Nodelist
-// // console.log(selectors);
+// console.log(selectors);
 
 // //HMTL collection
-// var htmlcolection1 = document.forms; // => trả về html collection
 // var htmlcolection2 = document.forms["form-1"]; // => trả về html collection
 // // var htmlcolection3 = document.anchors; // => trả về html collection
-// console.log(htmlcolection1);
+// console.log(htmlcolection1);// var htmlcolection1 = document.forms; // => trả về html collection
+
 
 // // thêm
 // // một node có thể thay thếu node cha document 
@@ -66,9 +66,39 @@
 // property (thuộc tích của element)
 // outerHTML -> thao tác trên element đang được lấy ra và ghi đè nếu seter element;
 
-var boxElement = document.querySelector('.box');
-boxElement.innerHTML  = '<h1 title="heading">hehe</h1>';
-console.log(boxElement.innerHTML);
+// var boxElement = document.querySelector('.box');
+// boxElement.innerHTML  = '<h1 title="heading">hehe</h1>';
+// console.log(boxElement.innerHTML);
 
+
+// NODE PROPERTY ===================================
+
+// CSS DOM =========================================
+// // - Viết heo camelCase 
+// var boxElement = document.querySelector('.box');
+// var boxElement2 = document.querySelector('.box2');
+// var textNode = boxElement.textContent;
+// console.log({textNode});
+// boxElement.style.width = '100px';
+// boxElement.style.height = '100px';
+// boxElement.style.backgroundColor = 'red';
+
+// // viết nhiều thuộc tính cùng lúc.
+// Object.assign(boxElement.style, {
+//    width: '200px',
+//    height: '100px',
+//    backgroundColor: 'green',
+//    color: "red",
+// })
+// geter
+
+//CLASSLISH PROPERTY ====================================
+// add, contains, remove, toggle
+
+// var divElement = document.querySelectorAll('div');
+// divElement.forEach((d) => {
+//    d.classList.add('box')
+// })
+// console.log(divElement);
 
 
