@@ -97,8 +97,67 @@
 
 // var divElement = document.querySelectorAll('div');
 // divElement.forEach((d) => {
-//    d.classList.add('box')
+//    d.classList.toggle(".s");
 // })
 // console.log(divElement);
 
 
+// =========================================================
+// DOM EVENT =============================================
+// Attrivute EVENT=======================================
+// - viết vào thẻ như attribute của thẻ 
+// onclick this -> trả về element node 
+// - Sự kiện nổi bọt-> có thể chăn sự kiện nổi bọt.
+
+
+// assign event using the element node===================
+// var h1Element = document.querySelectorAll('h1');
+// h1Element.forEach(ele => {
+//    ele.onclick = (e) => {
+//       console.log(e.target);
+//    }
+// })
+// h1Element.onclick = (event) => {
+//    console.log(event.target);
+// }
+// console.log(h1Element);
+
+// example ===============================================
+// keyup , kedown, onchange, onclick 
+// var inputText = document.querySelector('input[type="text"]');
+// var inputCheck = document.querySelector('input[type="checkbox"]');
+
+// var selectElement = document.querySelector('select');
+// inputText.oninput = (e) => {
+//    console.log(e.target.value);
+// } 
+// inputCheck.onchange = (e) => {
+//    console.log(e.target.checked);
+// } 
+// selectElement.onchange = (e) => {
+//    console.log(e.target.value);
+// }
+
+// document.onkeydown = (e) => {
+//    console.log(e.target.value);
+// }
+
+//==========================================
+// 1. preventDefault 
+// 2. stopPropagation => e.stopPropagation();
+
+
+// var inputText = document.querySelector('input[type="text"]');
+// var ulElement = document.querySelector('ul');
+
+// ulElement.onmousedown = (e) => {
+//    e.preventDefault();
+// }
+// ulElement.onclick = (e) => {
+//    console.log(e.target.value)
+// }
+
+
+// EVENT LISTEN =============================
+// 1. xử lí nhiều việc khi một event xảy ra 
+// 2. Lắng nghe / hủy bỏ lắng nghe (gỡ bỏ thêm event trong trường hợp cụ mà không muốn liên tục lắng nghe)

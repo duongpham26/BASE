@@ -5,8 +5,17 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
 </head>
+<style>
+   ul {
+      display: none;
+   }
+   .text:focus ~ ul {
+      display: block;
+   }
+
+</style>
 <body>
-   <h1 id="heading">
+   <!-- <h1 id="heading">
 
       <span style="display: none;">HTML DOM 1</span>
       <span>HTML DOM 2</span>
@@ -42,9 +51,28 @@
     <div>Box</div>
     <div>Box</div>
     <div>Box</div>
-    <div>Box</div>
+    <div>Box</div> -->
+
+   <!-- DOM Event ------------------------------------------->
+   <h1>DOM EVENT 1</h1>
+   <h1>DOM EVENT 2</h1>
+   <h1>DOM EVENT 3</h1>
+
+   <input class="text" type="text">
+   <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+   </ul>
+   <input type="checkbox">
+   <select>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+   </select>
 
 
+   
    <script src="./main.js"></script>
 </body>
 </html>

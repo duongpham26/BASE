@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-radixSort",
+      "appliesTo": "DataStructuresAndAlgorithms/KHTN/Chuong2/radixSort.cpp",
+      "type": "launch"
+    }
+  ]
+}
