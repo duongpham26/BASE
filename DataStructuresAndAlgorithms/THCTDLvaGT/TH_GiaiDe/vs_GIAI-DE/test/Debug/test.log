@@ -1,5 +1,0 @@
-﻿  test.cpp
-e:\vscode\base\datastructuresandalgorithms\thctdlvagt\th_giaide\vs_giai-de\test\test.cpp(58): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-e:\vscode\base\datastructuresandalgorithms\thctdlvagt\th_giaide\vs_giai-de\test\test.cpp(98): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-e:\vscode\base\datastructuresandalgorithms\thctdlvagt\th_giaide\vs_giai-de\test\test.cpp(140): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  test.vcxproj -> E:\vscode\BASE\DataStructuresAndAlgorithms\THCTDLvaGT\TH_GiaiDe\vs_GIAI-DE\Debug\test.exe

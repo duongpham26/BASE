@@ -128,6 +128,16 @@ int digit(int a, int k)
 	return d;
 }
 
+void appendList(list &l, list &l1) 
+{
+	if(!l.head && l1.head != NULL) l = l1;
+	if(l.head && l1.head != NULL) 
+	{
+		l.tail->next = l1.head;
+		l.tail = l1.tail;
+	} 
+}
+
 void sortLinkedList(list &l, int k)
 {
 	list L[10];
@@ -142,19 +152,26 @@ void sortLinkedList(list &l, int k)
 		addLast(L[d], p);
 	}
 	l.head = l.tail = NULL;
-	int i = 0, j = 9;
-	while (i < 10 && (L[i].head == NULL)) i++;
-	l.head = L[i].head;
-	while (j >= 0 && (L[j].tail == NULL)) j--;
-	l.tail = L[j].tail;
-	int temp;
-	while(i < j)
+
+	
+	for(int i = 0; i < 10; i++) 
 	{
-		temp = i + 1;
-		while (temp <= j && L[temp].head == NULL) temp++;
-		L[i].tail->next = L[temp].head;
-		i = temp;
+		appendList(l, L[i]);
 	}
+	// int i = 0, j = 9;
+	// while (i < 10 && (L[i].head == NULL)) i++;
+	// l.head = L[i].head;
+	// while (j >= 0 && (L[j].tail == NULL)) j--;
+	// l.tail = L[j].tail;
+	// int temp;
+	// while(i < j)
+	// {
+	// 	temp = i + 1;
+	// 	while (temp <= j && L[temp].head == NULL) temp++;
+	// 	L[i].tail->next = L[temp].head;
+	// 	i = temp;
+	// }
+
 	for (int i = 0; i < 10; i++) init(L[i]);
 }
 
@@ -170,7 +187,7 @@ int main()
 	clock_t start, end;
 	double duration;
 
-	const int n = 100000;
+	const int n = 10000000;
 	list l;
 	init(l);
 	randomList(l, n);
@@ -178,7 +195,7 @@ int main()
 	radixSortLinkedList(l);
 	end = clock();
 
-	//printList(l);
+	// printList(l);
 	duration = ((double)(end - start)) / CLOCKS_PER_SEC;
 	cout << "Time: " << duration;
 	remove(l);
