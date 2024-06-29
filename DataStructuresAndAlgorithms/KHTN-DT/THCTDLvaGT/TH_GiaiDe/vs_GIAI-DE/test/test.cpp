@@ -1,21 +1,22 @@
 ﻿#include <iostream>
 using namespace std;
 
-struct ListNode
+struct DLLNode 
 {
 	int data;
-	ListNode *next;
+	DLLNode *next;
+	DLLNode *prev;
 };
 
-int ListLength(ListNode *head)
+int ListLength(DLLNode *head)
 {
-	if (head == NULL) 
+	if (head == NULL)
 	{
-		cout << "List empty." << endl;
+		cout << "List Empty." << endl;
 		return -1;
 	}
-	ListNode *current = head;
 	int count = 0;
+	DLLNode *current = head;
 	while (current != NULL)
 	{
 		count++;
@@ -25,107 +26,68 @@ int ListLength(ListNode *head)
 	return count;
 }
 
-void InsertInLinkedList(ListNode **head, int data, int position)
+void InsertInDoubleLinkedList(DLLNode *&head, int data,int position)
 {
-	int k = 1;
-	ListNode *p, *newNode;
-	newNode = new ListNode;
-	if (!newNode)
+	DLLNode *newNode;
+	newNode = new DLLNode;
+	if (!newNode) 
 	{
-		cout << "Memory Error" << endl;
-			return;
-	}
-	newNode->data = data;
-	p = *head;
-	if (position == 1)
-	{
-		newNode->next = p;
-		*head = newNode;
-	} 
-	else
-	{
-		int k = 1;
-		ListNode *q = NULL;
-		while (p != NULL && k < position)
-		{
-			k++;
-			q = p;
-			p = p->next;
-		}
-		q->next = newNode;
-		newNode->next = p;
-	}
-}
-
-void DeleteNodeFromLinkedList(ListNode *&head, int position)
-{
-	int k = 1;
-	ListNode *p, *q;
-	if (head == NULL) 
-	{ 
-		cout << "List Empty";
+		cout << "Memory Error." << endl;
 		return;
 	}
-	p = head;
+	newNode->data = data;
 	if (position == 1)
 	{
-		head = head->next;
-		delete p;
+		newNode->next = head;
+		newNode->prev = NULL;
+		if (head) head->prev = newNode;
+		head = newNode;
 	}
 	else 
 	{
-		ListNode *q = NULL;
-		while (p != NULL && k < position)
+		DLLNode *temp = head;
+		int k = 1;
+		while (k < position - 1 && temp->next != NULL)
 		{
 			k++;
-			q = p;
-			p = p->next;
+			temp = temp->next;
 		}
-		if (p == NULL)
-		{
-			cout << "Position dose not exist." << endl;
-		}
-		q->next = p->next;
-		delete p;
+		newNode->next = temp->next;
+		newNode->prev = temp;
+		if (temp->next) temp->next->prev = newNode;
+		temp->next = newNode;
 	}
 }
 
-void DeleteLinkedList(ListNode *&head)
+void DeleteDoubleLinkedList(DLLNode *&head)
 {
-	if (head == NULL)
+	if (!head)
 	{
 		cout << "List Empty." << endl;
-		return;
 	}
-	ListNode *p, *q;
-	p = head;
-	while (p != NULL)
+	DLLNode *p = head;
+	while (head != NULL)
 	{
-		q = p->next;
-		delete(p);
-		p = q;
+		p = head;
+		head = head->next;
+		delete p;
 	}
-	head = NULL;
 }
 
 
 int main()
 {
+	DLLNode *head = NULL;
+	InsertInDoubleLinkedList(head, 5, 1);
+	InsertInDoubleLinkedList(head, 4, 1);
+	InsertInDoubleLinkedList(head, 3, 1);
+	InsertInDoubleLinkedList(head, 2, 2);
+	InsertInDoubleLinkedList(head, 1, 3);
 
-	ListNode *head = NULL;
+	ListLength(head);
 
-	InsertInLinkedList(&head, 9, 1);
-	InsertInLinkedList(&head, 8, 1);
-	InsertInLinkedList(&head, 7, 1);
-	InsertInLinkedList(&head, 6, 1);
-	InsertInLinkedList(&head, 2, 1);
-	InsertInLinkedList(&head, 3, 1);
-	DeleteNodeFromLinkedList(head, 1);
-	cout << ListLength(head) << endl;
-	DeleteLinkedList(head);
-	cout << ListLength(head) << endl;
-
-	cout << "dd";
+	DeleteDoubleLinkedList(head);
+	ListLength(head);
 
 	return 0;
 }

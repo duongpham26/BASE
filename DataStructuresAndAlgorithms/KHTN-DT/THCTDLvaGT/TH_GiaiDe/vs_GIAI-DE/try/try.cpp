@@ -24,11 +24,12 @@ int fibonacci(int n) {
 }
 int main()
 {
-	int a[5];
-	a[0] = 1;
-
-	cout << a << endl;
-	array1(a);
+	int *a = new int;
+	*a = 3;
+	int *p = a;
+	if (p == NULL) cout << "P NULL";
+	cout << *p;
+	delete a;
 }
 
 
