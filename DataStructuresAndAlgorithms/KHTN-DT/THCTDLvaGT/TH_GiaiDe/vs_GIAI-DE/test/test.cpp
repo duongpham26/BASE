@@ -1,80 +1,131 @@
 ﻿#include <iostream>
 using namespace std;
 
-// recursion
-int factorial(int n) {
-	cout << n << endl;
-	if (n == 1 || n == 0) return 1;
-	return n * factorial(n - 1);
-}
+struct ListNode
+{
+	int data;
+	ListNode *next;
+};
 
-int fibonacci(int n) {
-	if (n == 1 || n == 0) return n;
-	return fibonacci(n - 2) + fibonacci(n - 1);
-	
-}
-
-// backtracking
-const int N_bit = 3;
-int ar[100];
-void binaryString(int bit) {
-	for (int i = 0; i <= 1; i++) {
-		ar[bit] = i;
-		if (bit == N_bit) {
-			for (int j = 1; j <= N_bit; j++) {
-				cout << ar[j];
-			}
-			cout << endl;
-		} else binaryString(bit + 1);
+int ListLength(ListNode *head)
+{
+	if (head == NULL) 
+	{
+		cout << "List empty." << endl;
+		return -1;
 	}
+	ListNode *current = head;
+	int count = 0;
+	while (current != NULL)
+	{
+		count++;
+		cout << current->data << " ";
+		current = current->next;
+	}
+	return count;
 }
 
-void HoanVi(int bit) {
-	for (int i = 1; i <= N_bit; i++) {
-		ar[bit] = i;
-		if (bit == N_bit) {
-			for (int j = 1; j <= N_bit; j++) {
-				cout << ar[j];
-			}
-			cout << endl;
+void InsertInLinkedList(ListNode **head, int data, int position)
+{
+	int k = 1;
+	ListNode *p, *newNode;
+	newNode = new ListNode;
+	if (!newNode)
+	{
+		cout << "Memory Error" << endl;
+			return;
+	}
+	newNode->data = data;
+	p = *head;
+	if (position == 1)
+	{
+		newNode->next = p;
+		*head = newNode;
+	} 
+	else
+	{
+		int k = 1;
+		ListNode *q = NULL;
+		while (p != NULL && k < position)
+		{
+			k++;
+			q = p;
+			p = p->next;
 		}
-		else HoanVi(bit + 1);
+		q->next = newNode;
+		newNode->next = p;
 	}
 }
 
-
-// problem 1
-void towerOfHaNoi(int n, char source, char destination, char aux) {
-	if (n == 1) {
-		cout << "1 From " << source << " to " << destination << endl;
+void DeleteNodeFromLinkedList(ListNode *&head, int position)
+{
+	int k = 1;
+	ListNode *p, *q;
+	if (head == NULL) 
+	{ 
+		cout << "List Empty";
 		return;
 	}
-	towerOfHaNoi(n - 1, source, aux, destination);
-	cout << n <<" From " << source << " to " << destination << endl;
-	towerOfHaNoi(n - 1, aux, destination, source);
-}
-
-// problem 2
-int isArraySortedOrder(int *a, int n) {
-	if (n == 1) return 1;
-	if (a[n] > a[n - 1]) {
-		isArraySortedOrder(a, n - 1);
-	}
-	else {
-		return 0;
-	}
-}
-int main() {
-	// cout << factorial(3) << endl;
-	//towerOfHaNoi(5, 'A', 'C', 'B');
-	/*for (int i = 1; i <= 10; i++)
+	p = head;
+	if (position == 1)
 	{
-		cout << fibonacci(i) << " ";
+		head = head->next;
+		delete p;
 	}
-	int a[] = { 2, 3, 4, 9, 6, 7, 8, 9 };*/
-	//cout << isArraySortedOrder(a, 7) << endl;
+	else 
+	{
+		ListNode *q = NULL;
+		while (p != NULL && k < position)
+		{
+			k++;
+			q = p;
+			p = p->next;
+		}
+		if (p == NULL)
+		{
+			cout << "Position dose not exist." << endl;
+		}
+		q->next = p->next;
+		delete p;
+	}
+}
 
-	HoanVi(1);
+void DeleteLinkedList(ListNode *&head)
+{
+	if (head == NULL)
+	{
+		cout << "List Empty." << endl;
+		return;
+	}
+	ListNode *p, *q;
+	p = head;
+	while (p != NULL)
+	{
+		q = p->next;
+		delete(p);
+		p = q;
+	}
+	head = NULL;
+}
+
+
+int main()
+{
+
+	ListNode *head = NULL;
+
+	InsertInLinkedList(&head, 9, 1);
+	InsertInLinkedList(&head, 8, 1);
+	InsertInLinkedList(&head, 7, 1);
+	InsertInLinkedList(&head, 6, 1);
+	InsertInLinkedList(&head, 2, 1);
+	InsertInLinkedList(&head, 3, 1);
+	DeleteNodeFromLinkedList(head, 1);
+	cout << ListLength(head) << endl;
+	DeleteLinkedList(head);
+	cout << ListLength(head) << endl;
+
+	cout << "dd";
 
 	return 0;
 }
