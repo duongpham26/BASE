@@ -59,6 +59,41 @@ void InsertInDoubleLinkedList(DLLNode *&head, int data,int position)
 	}
 }
 
+void DLLDelete(DLLNode *&head, int position)
+{
+	if (head == NULL)
+	{
+		cout << "List Empty." << endl;
+		return;
+	}
+	DLLNode *temp = head;
+	if (position == 1)
+	{
+		head = head->next;
+		if(head != NULL) head->prev = NULL;
+		delete temp;
+	}
+	else 
+	{
+		int k = 1;
+		DLLNode *temp2;
+		while (k < position && temp->next != NULL)
+		{
+			k++;
+			temp = temp->next;
+		}
+		if (k != position)
+		{
+			cout << "Desired position dose not exist." << endl;
+			return;
+		}
+		temp2 = temp->prev;
+		temp2->next = temp->next;
+		if (temp->next != NULL) temp->next->prev = temp2;
+		delete temp;
+	}
+}
+
 void DeleteDoubleLinkedList(DLLNode *&head)
 {
 	if (!head)
@@ -83,11 +118,10 @@ int main()
 	InsertInDoubleLinkedList(head, 3, 1);
 	InsertInDoubleLinkedList(head, 2, 2);
 	InsertInDoubleLinkedList(head, 1, 3);
-
 	ListLength(head);
-
+	DLLDelete(head, 5); cout << endl;
+	ListLength(head);
 	DeleteDoubleLinkedList(head);
-	ListLength(head);
 
 	return 0;
 }
