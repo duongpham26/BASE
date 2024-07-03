@@ -1,0 +1,15 @@
+{
+   "name": "Getting Started Example",
+   "version": "1.0",
+   "description": "Build an Extension!",
+   "manifest_version": 3,
+   "content_scripts": [
+    {
+      "matches": ["https://zendvn.com/"],
+      "css": ["css/myStyle.css"],
+      "js": ["js/content.js"]
+   }
+]
+}
+
+
