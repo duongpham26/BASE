@@ -1,35 +1,111 @@
-// try.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <conio.h>
+#include <cstdlib> // for rand() and srand()
+#include <ctime>
+#include <math.h>
 using namespace std;
 
-
-void pointer(int *&c)
+struct node
 {
-	cout << "Adress " << &c << endl;
-	int x = 3;
-	int *p2 = &x;
-	c = p2;
+	int data;
+	node* next;
+};
+
+struct list
+{
+	node *head;
+	node *tail;
+};
+
+void init(list &l)
+{
+	l.head = l.tail = NULL;
 }
 
-void array1(int *a) {
-	cout << a << endl;
+node *generateNode(int data)
+{
+	node *newNode = new node;
+	if (newNode == NULL)
+	{
+		cout << "Khong du bo nho" << endl;
+		return NULL;
+	}
+	newNode->data = data;
+	newNode->next = NULL;
+	return newNode;
 }
 
-int fibonacci(int n) {
-	if (n < 0) return -1;
-	if (n == 1 || n == 0) return n;
-	return fibonacci(n - 1) + fibonacci(n - 2);
+
+void addLast(list &l, node *newNode)
+{
+	if (newNode == NULL) {
+		cout << "Node null" << endl;
+		return;
+	}
+	if (l.head == NULL)
+	{
+		l.head = newNode;
+		l.tail = l.head;
+	}
+	else
+	{
+		l.tail->next = newNode;
+		l.tail = newNode;
+	}
+	
 }
+
+
+void remove(list &l)
+{
+	if (l.head != NULL)
+	{
+		node *index = l.head;
+		node *temp;
+		while (index != NULL)
+		{
+			temp = index->next;
+			delete index;
+			index = temp;
+		}
+	}
+}
+
+void randomList(list &l, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		addLast(l, generateNode(rand() % size));
+	}
+}
+
+void printList(list l)
+{
+	node *i = l.head;
+	while (i != NULL)
+	{
+		cout << i->data << " ";
+		i = i->next;
+	}
+	cout << "\n";
+}
+
+
+
 int main()
 {
-	int *a = new int;
-	*a = 3;
-	int *p = a;
-	if (p == NULL) cout << "P NULL";
-	cout << *p;
-	delete a;
+	clock_t start, end;
+	double duration;
+
+	const int n = 100000;
+	list l;
+	init(l);
+	randomList(l, n);
+	start = clock();
+	mergeSort(l);
+	end = clock();
+	duration = ((double)(end - start)) / CLOCKS_PER_SEC;
+	cout << "Time: " << duration;
+	remove(l);
+	return 0;
 }
-
-

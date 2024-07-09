@@ -1,2 +1,2 @@
 ﻿  try.cpp
-  try.vcxproj -> E:\vscode\BASE\DataStructuresAndAlgorithms\KHTN-DT\THCTDLvaGT\TH_GiaiDe\vs_GIAI-DE\Debug\try.exe
+e:\vscode\base\datastructuresandalgorithms\khtn-dt\thctdlvagt\th_giaide\vs_giai-de\try\try.cpp(105): error C3861: 'mergeSort': identifier not found

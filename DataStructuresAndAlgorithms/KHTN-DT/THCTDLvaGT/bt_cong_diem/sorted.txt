@@ -1,0 +1,6 @@
+MA SO               TEN SACH                                          GIA TIEN                 SO LUONG                 
+4                   sach4                                             4000                     76                       
+1a                  sach2                                             10000                    10                       
+5                   sach5                                             30000                    10                       
+1                   sach1                                             50000                    21                       
+3                   sach3                                             90000                    12                       
