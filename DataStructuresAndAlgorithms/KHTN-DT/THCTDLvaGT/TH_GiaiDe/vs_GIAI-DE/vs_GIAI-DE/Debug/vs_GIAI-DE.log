@@ -1,4 +1,0 @@
-﻿  Source.cpp
-e:\vscode\base\datastructuresandalgorithms\thctdlvagt\th_giaide\vs_giai-de\vs_giai-de\source.cpp(32): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-e:\vscode\base\datastructuresandalgorithms\thctdlvagt\th_giaide\vs_giai-de\vs_giai-de\source.cpp(34): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  vs_GIAI-DE.vcxproj -> E:\vscode\BASE\DataStructuresAndAlgorithms\THCTDLvaGT\TH_GiaiDe\vs_GIAI-DE\Debug\vs_GIAI-DE.exe
