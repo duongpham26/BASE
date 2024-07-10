@@ -1,69 +1,76 @@
-﻿
-
-#include <iostream>
+﻿#include <iostream> 
 using namespace std;
-#define MAXSIZE 5
 
-struct ArrayStack {
-	int top;
-	int capacity;
-	int *array;
+struct ListNode {
+	int data;
+	ListNode *next;
 };
 
-ArrayStack *CreateStack(){
-	ArrayStack *S = new ArrayStack;
-	if (!S) return NULL;
-	S->capacity = MAXSIZE;
-	S->top = -1;
-	S->array = new int[10];
-	if (!S->array) return NULL;
-	return S;
+struct Queue {
+	ListNode *front;
+	ListNode *rear;
+};
+
+Queue &CreateQueu() {
+	Queue Q;
+	Q.front = Q.rear = NULL;
+	return Q;
 }
 
-int isEmptyStack(ArrayStack &S) {
-	return (S.top == -1);
+int IsEmptyQueue(Queue Q) {
+	return Q.front == NULL;
 }
 
-int isFullStack(ArrayStack &S) {
-	return (S.top == S.capacity - 1);
-}
-
-void Push(ArrayStack &S, int data) {
-	if (isFullStack(S)) 
-		cout << "Stack Overflow" << endl;
-	else
-		S.array[++S.top] = data;
-}
-
-int Pop(ArrayStack &S) {
-	if (isEmptyStack(S)) {
-		cout << "Stack Underflow" << endl;
-		return INT_MIN;
+void EnQueue(Queue &Q, int data) {
+	ListNode *newNode = new ListNode;
+	if (!newNode) {
+		cout << "Error Memory!" << endl;
+		return;
 	}
-	else
-		return S.array[S.top--];
+	newNode->data = data;
+	newNode->next = NULL;
+	if (Q.rear) Q.rear->next = newNode;
+	Q.rear = newNode;
+	if (Q.front == NULL) Q.front = Q.rear = newNode;
 }
-void DeleteStack(ArrayStack *S) {
-	if (S) {
-		if (S->array)
-			delete S->array;
-		delete S;
+
+int DeQueue(Queue &Q) {
+	if (IsEmptyQueue(Q)) {
+		cout << "Queue is empty." << endl;
+		return NULL;
 	}
+	ListNode *temp;
+	int data;
+	temp = Q.front;
+	data = Q.front->data;
+	Q.front = temp->next;
+	delete temp;
+	return data;
+}
+
+void DeleteQueue(Queue &Q) {
+	ListNode *temp;
+	while (Q.front != NULL) {
+		temp = Q.front;
+		Q.front = Q.front->next;
+		delete temp;
+	}
+	Q.front = Q.rear = NULL;
 }
 
 int main() {
-	ArrayStack *S = CreateStack();
-	Push(*S, 1);
-	Push(*S, 2);
-	Push(*S, 3);
-	Push(*S, 4);
-	Push(*S, 5);
-	Push(*S, 6);
-	d
-	for (int i = 0; i < 6; i++) {
-		cout << Pop(*S) << endl;
+	Queue Q = CreateQueu();
+	EnQueue(Q, 1);
+	EnQueue(Q, 2);
+	EnQueue(Q, 3);
+	EnQueue(Q, 5);
+	EnQueue(Q, 4);
+
+	while (Q.front)
+	{
+		cout << DeQueue(Q) << endl;
 	}
 
-	DeleteStack(S);
+	DeleteQueue(Q);
 	return 0;
 }
