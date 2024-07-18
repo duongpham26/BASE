@@ -1,4 +1,5 @@
-#include "Header.h"
+#include <iostream>
+using namespace std;
 
 struct BinarySearchTree {
 	int data;
