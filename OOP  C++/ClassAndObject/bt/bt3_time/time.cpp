@@ -76,16 +76,3 @@ void time::tick()
 		}
 	}
 }
-
-int main()
-{
-
-	time t1;
-	while (1)
-	{
-		t1.tick();
-		t1.display();
-		Sleep(1000);
-	}
-	return 0;
-}
