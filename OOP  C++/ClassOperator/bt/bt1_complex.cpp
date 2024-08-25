@@ -1,38 +1,44 @@
 #include <iostream>
+
 using namespace std;
 
-class vector
+class complex 
 {
-   int n;
-   int *v;
+	int real, image;
 public:
-   vector();
-   vector(int n);
-   vector(int n, int *a);
-   void display();
-   ~vector()
-   {
-      delete v;
-   }
+	complex(int r = 0, int i = 0)
+	{
+		real = r;
+		image = i;
+	}
+	complex &operator+(complex);
+	void display();
 };
 
-vector::vector()
+complex &complex::operator+(complex c)
 {
-   cout << "Nhap so chieu n : "; cin >> n;
-   v = new int[n];
-   for(int i = 0; i < n; i++)
-      cout << "Nhap phan tu thu " << i + 1 << " : "; cin >> v[i]; 
+	complex result;
+	result.real = real + c.real;
+	result.image = image + c.image;
+	cout << "address: " << &result << endl;
+	return result;
 }
 
-void vector::display() 
+void complex::display()
 {
-   for(int i = 0; i < n; i++)
-      cout << v[i] << " ";
-   cout << endl;
+
+	cout << "Complex: " << real << (image < 0 ? "-" : "+") << abs(image) << "j" << endl;
 }
 
 int main() 
 {
+	complex c1(-1,-2), c2(1, -3);
+	complex c3 = c1 + c2;
 
-   return 0;
+	cout << "address c3: " << &c3 << endl;
+
+	c3.display();
+	return 0;
 }
+
+
