@@ -35,4 +35,10 @@
   	<servlet-name>configServlet</servlet-name>
   	<url-pattern>/test-config</url-pattern>
   </servlet-mapping>
+  
+  
+  <session-config>
+  <session-timeout>1</session-timeout>
+  </session-config>
+  
 </web-app>
