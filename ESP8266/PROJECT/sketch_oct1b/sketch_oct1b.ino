@@ -14,19 +14,20 @@ Servo myservo;
 BlynkTimer timer;
 unsigned long timeDelay = millis();
 unsigned long timeDelay1 = millis();
+unsigned long timeDelay2 = millis();
 
 
 int timerID1;
 int gas_value;
-int mucCanhbao=400;
+int mucCanhbao=600;
 int buzzer=5; //D1
 int ledMode = 12; //D6 led hiển thị chế độ hoạt động
 int servopin=4; // D2 Kết nối servo
 int button1=0; //D3 Bật tắt chế độ cảnh báo
 int button2=14; // D5 Điều khiển cửa
 
-int BTN_Den = 13;
-int DenLED = 15;
+int BTN_Den = 13; // d7
+int DenLED = 15; // d8
 boolean denState = 0;
 
 boolean button1State=HIGH;
@@ -62,24 +63,14 @@ void setup() {
 
   attachInterrupt(button2, ISR, FALLING);
   attachInterrupt(BTN_Den, ISR1, FALLING);
+  attachInterrupt(button1, ISR2, FALLING);
   timerID1 = timer.setInterval(1000L,handleTimerID1);
 }
 
 void loop() {
   Blynk.run();
   timer.run();
-  if(digitalRead(button1)==LOW){
-    if(button1State==HIGH){
-      button1State=LOW;
-      runMode=!runMode;
-      digitalWrite(ledMode,runMode);
-      Serial.println("Run mode: " + String(runMode));
-      Blynk.virtualWrite(RUNMODE,runMode);
-      delay(200);
-    }
-  }else{
-    button1State=HIGH;
-  }
+  
 
   // if(digitalRead(button2)==LOW){
   //   if(button2State==HIGH){
@@ -168,6 +159,20 @@ void controlDoor(){
   }
 }
 
+ICACHE_RAM_ATTR void ISR() {
+  if(millis() - timeDelay > 200) {
+    if(cuaState == 0) {
+      myservo.write(199);
+      cuaState = 1;
+    } else {
+      myservo.write(0);
+      cuaState = 0;
+    }
+    Blynk.virtualWrite(SERVO, cuaState);
+    timeDelay = millis();
+  }
+}
+
 ICACHE_RAM_ATTR void ISR1() {
   if(millis() - timeDelay1 > 200) {
     if(denState == 0) {
@@ -183,17 +188,18 @@ ICACHE_RAM_ATTR void ISR1() {
   }
 }
 
-ICACHE_RAM_ATTR void ISR() {
-  if(millis() - timeDelay > 200) {
-    if(cuaState == 0) {
-      myservo.write(199);
-      cuaState = 1;
+ICACHE_RAM_ATTR void ISR2() {
+  if(millis() - timeDelay2 > 200) {
+    if(runMode==1){
+      runMode=0;
+      digitalWrite(ledMode, runMode);
     } else {
-      myservo.write(0);
-      cuaState = 0;
+      runMode=1;
+      digitalWrite(ledMode, runMode);
     }
-    Blynk.virtualWrite(SERVO, cuaState);
-    timeDelay = millis();
+    Blynk.virtualWrite(RUNMODE,runMode);
+    Serial.println("btb canh bao");
+    timeDelay2 = millis();
   }
 }
 
