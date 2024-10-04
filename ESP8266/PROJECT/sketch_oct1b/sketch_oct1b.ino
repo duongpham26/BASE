@@ -15,6 +15,7 @@ BlynkTimer timer;
 unsigned long timeDelay = millis();
 unsigned long timeDelay1 = millis();
 unsigned long timeDelay2 = millis();
+unsigned long timeDelay3 = millis();
 
 
 int timerID1;
@@ -25,6 +26,9 @@ int ledMode = 12; //D6 led hiển thị chế độ hoạt động
 int servopin=4; // D2 Kết nối servo
 int button1=0; //D3 Bật tắt chế độ cảnh báo
 int button2=14; // D5 Điều khiển cửa
+
+int tx_buzzer =17; // D4
+int stateBuzzerD4 = 0;
 
 int BTN_Den = 13; // d7
 int DenLED = 15; // d8
@@ -64,6 +68,7 @@ void setup() {
   attachInterrupt(button2, ISR, FALLING);
   attachInterrupt(BTN_Den, ISR1, FALLING);
   attachInterrupt(button1, ISR2, FALLING);
+  attachInterrupt(tx_buzzer, ISR3, CHANGE);
   timerID1 = timer.setInterval(1000L,handleTimerID1);
 }
 
@@ -200,6 +205,20 @@ ICACHE_RAM_ATTR void ISR2() {
     Blynk.virtualWrite(RUNMODE,runMode);
     Serial.println("btb canh bao");
     timeDelay2 = millis();
+  }
+}
+
+ICACHE_RAM_ATTR void ISR3() {
+  if(millis() - timeDelay3 > 200) {
+    if(stateBuzzerD4==0){
+      stateBuzzerD4=1;
+      digitalWrite(buzzer, stateBuzzerD4);
+    } else {
+      stateBuzzerD4=0;
+      digitalWrite(buzzer, stateBuzzerD4);
+    }
+    Serial.println("Co lua");
+    timeDelay3 = millis();
   }
 }
 
