@@ -27,8 +27,8 @@ int servopin=4; // D2 Kết nối servo
 int button1=0; //D3 Bật tắt chế độ cảnh báo
 int button2=14; // D5 Điều khiển cửa
 
-int tx_buzzer =17; // D4
-int stateBuzzerD4 = 0;
+int tx_buzzer = 2; // D4
+// int stateBuzzerD4 = 0;
 
 int BTN_Den = 13; // d7
 int DenLED = 15; // d8
@@ -53,6 +53,7 @@ void setup() {
   pinMode(button1,INPUT_PULLUP);
   pinMode(button2,INPUT_PULLUP);
 
+  // pinMode(tx_buzzer, INPUT);
   pinMode(BTN_Den,INPUT_PULLUP);
   pinMode(DenLED, OUTPUT);
   digitalWrite(DenLED ,denState);
@@ -68,14 +69,14 @@ void setup() {
   attachInterrupt(button2, ISR, FALLING);
   attachInterrupt(BTN_Den, ISR1, FALLING);
   attachInterrupt(button1, ISR2, FALLING);
-  attachInterrupt(tx_buzzer, ISR3, CHANGE);
+  // attachInterrupt(tx_buzzer, ISR3, RISING);
   timerID1 = timer.setInterval(1000L,handleTimerID1);
 }
 
 void loop() {
   Blynk.run();
   timer.run();
-  
+ 
 
   // if(digitalRead(button2)==LOW){
   //   if(button2State==HIGH){
@@ -91,11 +92,12 @@ void loop() {
 }
 
 void handleTimerID1(){
+  Serial.print(digitalRead(tx_buzzer) == LOW);
   gas_value = analogRead(A0);
   Serial.println(gas_value);
   Blynk.virtualWrite(KHIGAS, gas_value);
   if(runMode==1){
-    if(gas_value>mucCanhbao){
+    if((gas_value>mucCanhbao) || (digitalRead(tx_buzzer) == HIGH)){
       if(canhbaoState==0){
         canhbaoState=1;
         Blynk.logEvent("canhbao", String("Cảnh báo! Khí gas=" + String(gas_value)+" vượt quá mức cho phép!"));
@@ -106,7 +108,7 @@ void handleTimerID1(){
       myservo.write(199);
       cuaState=1;
       Blynk.virtualWrite(SERVO,cuaState);
-    } else if (gas_value < mucCanhbao) {
+    } else if (gas_value < mucCanhbao && (digitalRead(tx_buzzer) == LOW)) {
       canhbaoState = 0;
       digitalWrite(buzzer,LOW);
       Blynk.virtualWrite(TRANGTHAICB,LOW);
@@ -119,6 +121,10 @@ void handleTimerID1(){
     canhbaoState=0;
   }
 }
+
+// void handleTimerID2() {
+//   digitalWrite(buzzer, LOW);
+// }
 
 // BLYNK_CONNECTED() {
 //   Blynk.syncVirtual(RUNMODE,SERVO);
@@ -208,17 +214,14 @@ ICACHE_RAM_ATTR void ISR2() {
   }
 }
 
-ICACHE_RAM_ATTR void ISR3() {
-  if(millis() - timeDelay3 > 200) {
-    if(stateBuzzerD4==0){
-      stateBuzzerD4=1;
-      digitalWrite(buzzer, stateBuzzerD4);
-    } else {
-      stateBuzzerD4=0;
-      digitalWrite(buzzer, stateBuzzerD4);
-    }
-    Serial.println("Co lua");
-    timeDelay3 = millis();
-  }
-}
+// ICACHE_RAM_ATTR void ISR3() {
+//   if(millis() - timeDelay3 > 200) {
+ 
+//       digitalWrite(buzzer, stateBuzzerD4); 
+//       timer.setTimeout(3000L,handleTimerID2);
+   
+//     Serial.println("Co lua");
+//     timeDelay3 = millis();
+//   }
+// }
 
