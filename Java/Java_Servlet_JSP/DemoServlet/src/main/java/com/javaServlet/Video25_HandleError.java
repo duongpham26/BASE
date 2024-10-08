@@ -5,26 +5,21 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/create-cookie" })
-public class Video13_ServletCookie extends HttpServlet {
+@WebServlet(urlPatterns = { "/ExceptionHandler" })
+public class Video25_HandleError extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter writer = resp.getWriter();
+		writer.println("Xay ra loi vui long thu lai!");
+	}
 
-		writer.println("<h1>Hello</h1>");
-
-		Cookie cookie = new Cookie("name", "Duong");
-		cookie.setMaxAge(10);
-		resp.addCookie(cookie);
-
-		Cookie cookie2 = new Cookie("age", "22");
-		cookie.setMaxAge(30);
-		resp.addCookie(cookie2);
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 }

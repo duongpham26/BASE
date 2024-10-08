@@ -1,30 +1,23 @@
-package com.javaServlet;
+package com.ServletContext;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/create-cookie" })
-public class Video13_ServletCookie extends HttpServlet {
+@WebServlet(urlPatterns = { "/servlet-context-2" })
+public class ServletContext2 extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
+
 		PrintWriter writer = resp.getWriter();
+		String name = (String) getServletContext().getAttribute("name");
 
-		writer.println("<h1>Hello</h1>");
-
-		Cookie cookie = new Cookie("name", "Duong");
-		cookie.setMaxAge(10);
-		resp.addCookie(cookie);
-
-		Cookie cookie2 = new Cookie("age", "22");
-		cookie.setMaxAge(30);
-		resp.addCookie(cookie2);
+		writer.println("Xin chao " + name);
 	}
 }
