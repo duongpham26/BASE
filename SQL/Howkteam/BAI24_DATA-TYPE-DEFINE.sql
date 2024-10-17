@@ -1,0 +1,14 @@
+﻿USE HowKteam
+GO
+
+EXECUTE sp_addtype 'NNAME' , 'NVARCHAR(100)', 'NOT NULL'
+
+CREATE TABLE TESTTYPE 
+(
+	_NAME NNAME,
+)
+
+DROP TABLE TESTTYPE
+
+-- PHẢI CÓA BẢNG RỒI MỚI CÓ THỂ XÓA KIỂU TỰ ĐỊNH NGHĨA 
+EXECUTE sp_droptype 'NNAME'
