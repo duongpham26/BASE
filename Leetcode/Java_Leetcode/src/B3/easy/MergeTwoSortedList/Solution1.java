@@ -1,4 +1,4 @@
-package B2.easy.MergeTwoSortedList;
+package B3.easy.MergeTwoSortedList;
 
 /**
  * Definition for singly-linked list. public class ListNode { int val; ListNode
@@ -25,23 +25,6 @@ class Solution1 {
 	}
 
 	public static void main(String[] args) {
-		Solution1 Solution1 = new Solution1();
-		ListNode l1 = new ListNode(11, null);
-		l1 = new ListNode(5, l1);
-		l1 = new ListNode(4, l1);
-		l1 = new ListNode(3, l1);
-		l1 = new ListNode(2, l1);
 
-		ListNode l2 = new ListNode(10, null);
-		l2 = new ListNode(9, l2);
-		l2 = new ListNode(6, l2);
-		l2 = new ListNode(5, l2);
-		l2 = new ListNode(3, l2);
-
-		ListNode listSorted = Solution1.mergeTwoLists(l1, l2);
-		while (listSorted.next != null) {
-			System.out.println(listSorted.val);
-
-		}
 	}
 }
