@@ -8,7 +8,7 @@
 </head>
 <body>
 	<p>Hello JSP</p>
-	<a href="profile.jsp?id=1">Click me!</a>
+	<a href="user/profile.jsp?id=1">Click me!</a>
 	<%
 	int x = 10;
 	int y = 20;
