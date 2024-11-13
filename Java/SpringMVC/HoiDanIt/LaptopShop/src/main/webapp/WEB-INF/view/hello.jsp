@@ -8,7 +8,8 @@
 </head>
 
 <body>
-   Hello Duong Pham
+   <h1>Hello from jsp</h1>
+   <h1>${text}</h1>
 </body>
 
 </html>
