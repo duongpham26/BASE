@@ -8,17 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.duongpham26.LaptopShop.service.UserService;
 
 // // Spring MVC
-// @Controller
-// public class UserController {
-   
-//    @RequestMapping("/")
-//    public String getHomePage() {
-//       return "from controller";
-//    }
-// }
-
-// Rest API
-@RestController
+@Controller
 public class UserController {
    
    private UserService userService;
@@ -27,8 +17,25 @@ public class UserController {
       this.userService = userService;
    }
 
-   @GetMapping("/")
+   @RequestMapping("/")
    public String getHomePage() {
-      return this.userService.handleHello();
+      String text = this.userService.handleHello();
+      return "index.html";
    }
 }
+
+// Rest API
+// @RestController
+// public class UserController {
+   
+//    private UserService userService;
+
+//    public UserController(UserService userService) {
+//       this.userService = userService;
+//    }
+
+//    @GetMapping("/")
+//    public String getHomePage() {
+//       return this.userService.handleHello();
+//    }
+// }
