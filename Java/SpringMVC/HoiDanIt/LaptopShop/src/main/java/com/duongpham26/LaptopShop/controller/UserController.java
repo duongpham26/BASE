@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.duongpham26.LaptopShop.domain.User;
+import com.duongpham26.LaptopShop.repository.UserRepository;
 import com.duongpham26.LaptopShop.service.UserService;
 
 // // Spring MVC
 @Controller
 public class UserController {
    
-   private UserService userService;
+   private final UserService userService;
 
    public UserController(UserService userService) {
       this.userService = userService;
@@ -31,17 +32,18 @@ public class UserController {
 
    @RequestMapping("/admin/user")
    public String getUserSer(Model model) {
-      String text = this.userService.handleHello();
-      model.addAttribute("text", text);
+      model.addAttribute("newUser", new User());
       return "admin/user/create";
    }
 
    @RequestMapping(value = "admin/user/create", method = RequestMethod.POST)
-      public String doAddUser(@ModelAttribute("newUer")User user, ModelMap model) {
+      public String doAddUser(@ModelAttribute("newUser")User user, ModelMap model) {
       System.out.println("User " + user);
 
+      User u = this.userService.handleSavaUser(user);
+
       String text = this.userService.handleHello();
-      model.addAttribute("text", text);
+      model.addAttribute("text", "text");
       return "hello";
   }
 }
