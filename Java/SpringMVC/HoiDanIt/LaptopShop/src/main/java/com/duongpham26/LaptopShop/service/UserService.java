@@ -8,7 +8,7 @@ import com.duongpham26.LaptopShop.repository.UserRepository;
 @Service
 public class UserService {
    
-   private UserRepository userRepository;
+   private UserRepository  userRepository;
 
    public UserService(UserRepository userRepository) {
       this.userRepository = userRepository;
