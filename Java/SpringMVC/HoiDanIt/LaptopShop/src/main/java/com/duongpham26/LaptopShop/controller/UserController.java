@@ -1,5 +1,7 @@
 package com.duongpham26.LaptopShop.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -25,6 +27,8 @@ public class UserController {
 
    @RequestMapping("/")
    public String getHomePage(Model model) {
+      List<User> arrUser = this.userService.getAllUsersByEmail("duong.pham2617@gmail.com");
+      System.out.println("Array user : " + arrUser);
       String text = this.userService.handleHello();
       model.addAttribute("text", text);
       return "hello";
