@@ -35,7 +35,13 @@ public class UserController {
    }
 
    @RequestMapping("/admin/user")
-   public String getUserSer(Model model) {
+   public String getAllUser(Model model) {
+      
+      return "admin/user/listUser";
+   }
+
+   @RequestMapping("/admin/user/create")
+   public String getUser(Model model) {
       model.addAttribute("newUser", new User());
       return "admin/user/create";
    }
