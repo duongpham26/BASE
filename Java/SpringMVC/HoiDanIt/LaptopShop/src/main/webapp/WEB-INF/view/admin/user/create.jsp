@@ -24,40 +24,41 @@
 
       <body>
 
-         <div class="container-sm">
+         <div class="container mt-5">
 
             <div class="row">
-               <div class="col">
-                  <form:form action="/create-user" method="post" modelAttribute="user">
-                     <h2 class="border-bottom border-1 py-3">Create a user</h2>
-                     <div class="">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+               <div class="col-md-6 mb-3 mx-auto">
+                  <h2>Create a user</h2>
+                  <hr />
+                  <form action="admin/user/create" method="post" modelAttribute="user">
+                     <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control">
                      </div>
 
-                     <div class="">
-                        <label for="inputPassword4" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4">
+                     <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control">
                      </div>
 
-                     <div class="">
-                        <label for="inputFullName4" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="inputFullName4">
+                     <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control">
                      </div>
 
-                     <div class="">
-                        <label for="inputPhone4" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="inputPhone4">
+                     <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="text" class="form-control">
                      </div>
 
-                     <div class="">
-                        <label for="inputAdress4" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="inputAdress4">
+                     <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control">
                      </div>
 
                      <button type="submit" class="btn btn-primary mt-3">Submit</button>
 
-                  </form:form>
+                  </form>
                </div>
             </div>
 

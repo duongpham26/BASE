@@ -3,11 +3,11 @@ package com.duongpham26.LaptopShop.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.duongpham26.LaptopShop.domain.User;
 import com.duongpham26.LaptopShop.service.UserService;
@@ -36,10 +36,13 @@ public class UserController {
       return "admin/user/create";
    }
 
-   @RequestMapping(value = "/create-user", method = RequestMethod.POST)
-      public String doAddUser(@ModelAttribute("SpringWeb")User user, ModelMap model) {
+   @RequestMapping(value = "admin/user/create", method = RequestMethod.POST)
+      public String doAddUser(@ModelAttribute("newUer")User user, ModelMap model) {
       System.out.println("User " + user);
-      return "admin/user/viewUser";
+
+      String text = this.userService.handleHello();
+      model.addAttribute("text", text);
+      return "hello";
   }
 }
 
