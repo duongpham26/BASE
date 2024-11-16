@@ -35,9 +35,11 @@ public class UserController {
    }
 
    @RequestMapping("/admin/user")
-   public String getAllUser(Model model) {
-      
-      return "admin/user/listUser";
+   public String getUserPage(Model model) {
+      List<User> users = this.userService.getAllUsers();
+      model.addAttribute("users", users);
+      System.out.println("Users : " + users);
+      return "admin/user/table-user";
    }
 
    @RequestMapping("/admin/user/create")
@@ -51,11 +53,9 @@ public class UserController {
       System.out.println("User " + user);
 
       User u = this.userService.handleSavaUser(user);
-
-      String text = this.userService.handleHello();
-      model.addAttribute("text", "text");
-      return "hello";
-  }
+      String redirectUrl = "/admin/user";
+      return "redirect:" + redirectUrl;
+   }
 }
 
 // Rest API
