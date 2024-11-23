@@ -25,14 +25,14 @@
          </head>
 
          <body>
-            <div class="container mt-5 px-0">
+            <div class="container mt-5">
                <div class="d-flex justify-content-between">
-                  <h3>Table User</h3>
+                  <h3 class="mb-0">Table User</h3>
                   <a class="btn btn-primary" href="/admin/user/create" role="button">Create User</a>
                </div>
                <hr />
 
-               <table class="table table-bordered table-hover">
+               <table class="table table-bordered table-hover align-middle text-center">
                   <thead>
                      <tr>
                         <th scope="col">ID</th>
@@ -48,10 +48,10 @@
                            <th scope="row">${user.id}</th>
                            <td>${user.email}</td>
                            <td>${user.fullName}</td>
-                           <td>
-                              <button class="btn btn-success" type="submit">View</button>
-                              <button class="btn btn-warning" type="submit">Update</button>
-                              <button class="btn btn-danger" type="submit">Delete</button>
+                           <td class="text-center">
+                              <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
+                              <a href="/admin/user/update/${user.id}" class="btn btn-warning mx-3">Update</a>
+                              <a class="btn btn-danger" href="/admin/user/delete/${user.id}">Delete</a>
                            </td>
                         </tr>
                      </c:forEach>

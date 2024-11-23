@@ -20,14 +20,14 @@ unsigned long timeDelay3 = millis();
 
 int timerID1;
 int gas_value;
-int mucCanhbao=600;
+int mucCanhbao=700;
 int buzzer=5; //D1
 int ledMode = 12; //D6 led hiển thị chế độ hoạt động
 int servopin=4; // D2 Kết nối servo
 int button1=0; //D3 Bật tắt chế độ cảnh báo
 int button2=14; // D5 Điều khiển cửa
 
-int tx_buzzer = 2; // D4
+int tx_buzzer = 2; // s2
 // int stateBuzzerD4 = 0;
 
 int BTN_Den = 13; // d7
@@ -77,7 +77,6 @@ void loop() {
   Blynk.run();
   timer.run();
  
-
   // if(digitalRead(button2)==LOW){
   //   if(button2State==HIGH){
   //     button2State=LOW;
@@ -96,6 +95,7 @@ void handleTimerID1(){
   gas_value = analogRead(A0);
   Serial.println(gas_value);
   Blynk.virtualWrite(KHIGAS, gas_value);
+  
   if(runMode==1){
     if((gas_value>mucCanhbao) || (digitalRead(tx_buzzer) == HIGH)){
       if(canhbaoState==0){
@@ -152,7 +152,7 @@ BLYNK_WRITE(DEN){
 
 void controlDoor(){
   if(cuaState==1){
-    Serial.println("hehe");
+    Serial.println("mo cua");
     // for (int pos = 0; pos <= 180; pos += 5){
     //   myservo.write(pos);
     //   delay(0);
@@ -160,7 +160,7 @@ void controlDoor(){
      myservo.write(0);
      cuaState=0;
   }else{
-    Serial.println("hehe 1");
+    Serial.println("dong cua");
     // for (int pos = 180; pos >= 0; pos -= 5) {
     //   myservo.write(pos);
     //   delay(0);
