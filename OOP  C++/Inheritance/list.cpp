@@ -7,6 +7,39 @@ struct element
 	void *content;
 };
 
+class mere
+{
+public:
+	virtual void display() = 0;
+};
+
+class point: public mere
+{
+	int x, y;
+public:
+	point(int abs = 0, int ord = 0)
+	{
+		x = abs;
+		y = ord;
+	}
+	void display()
+	{
+		cout << "Toa do: " << x << " " << y << endl;
+	}
+};
+
+class complex: public mere
+{
+	double real, image;
+public:
+
+	complex(double r = 0, double i = 0) { real = r; image = i; }
+	void display()
+	{
+		cout << "So phuc: " << real << (image < 0 ? "" : "+") << image << "j" << endl;
+	}
+};
+
 class list
 {
 	element *head;
@@ -26,9 +59,10 @@ public:
 		{
 			adel = current->content;
 			current = current->next;
-		} 
+		}
 		return adel;
 	}
+	void display_list();
 	int last() { return (current == NULL); }
 };
 
@@ -52,45 +86,32 @@ void list::add(void *chose)
 	head = adel;
 }
 
-class point
+void list::display_list()
 {
-	int x, y;
-public:
-	point(int abs = 0, int ord = 0)
-	{
-		x = abs;
-		y = ord;
-	}
-	void display()
-	{
-		cout << "Toa do: " << x << " " << y << endl;
-	}
-};
-
-class listpoint:public list, public point
-{
-public:
-	listpoint() {};
-	void display();
-};
-
-void listpoint::display()
-{
+	mere *prt;
 	first();
 	while (!last())
 	{
-		point *prt = (point *)nextelement();
+		prt = (mere *)nextelement();
 		prt->display();
 	}
 }
 
+
+
+
 int main()
 {
-	listpoint l;
-	point p1(1, 1), p2(2, 2), p3(3,3);
+	list l;
+	point p1(1, 1), p2(2, 2);
+	complex c1(1, 1), c2(2, 2);
+
 	l.add(&p1);
 	l.add(&p2);
-	l.add(&p3);
-	l.display();
+
+	l.add(&c1);
+	l.add(&c2);
+	l.display_list();
+
 	return 0;
 }

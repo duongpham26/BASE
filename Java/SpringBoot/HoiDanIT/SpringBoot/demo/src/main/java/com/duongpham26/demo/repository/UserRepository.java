@@ -11,8 +11,5 @@ import com.duongpham26.demo.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 
-   User findOneById(long id);
-   
-   List<User> findAll();
    
 } 
