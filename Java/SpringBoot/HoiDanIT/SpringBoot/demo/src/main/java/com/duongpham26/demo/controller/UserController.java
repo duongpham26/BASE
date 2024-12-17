@@ -3,8 +3,8 @@ package com.duongpham26.demo.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.duongpham26.demo.entity.User;
-import com.duongpham26.demo.service.IdInvalidException;
 import com.duongpham26.demo.service.UserService;
+import com.duongpham26.demo.util.error.IdInvalidException;
 
 import java.util.List;
 
@@ -46,7 +46,6 @@ public class UserController {
    public ResponseEntity<User> getUser(@PathVariable("id") long id) {
       User user = this.userService.handleGetUser(id);
       return ResponseEntity.status(HttpStatus.OK).body(user);
-      // return user;
    }
 
    @GetMapping("/user/get-all-user")
