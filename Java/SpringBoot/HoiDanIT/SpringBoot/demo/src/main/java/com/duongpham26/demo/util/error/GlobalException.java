@@ -2,6 +2,7 @@ package com.duongpham26.demo.util.error;
 
 import java.net.BindException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,15 +37,13 @@ public class GlobalException {
    public ResponseEntity<RestResponse<Object>> validationError(MethodArgumentNotValidException ex) {
       BindingResult result = ex.getBindingResult();
       final List<FieldError> fieldError = result.getFieldErrors(); 
-      List<String> errors = fieldError.stream().map(f -> f.getDefaultMessage()).collect(null);
+      List<String> errors = fieldError.stream().map(f -> f.getDefaultMessage()).collect(Collectors.toList());
       
       RestResponse<Object> res = new RestResponse<>();
       res.setStatusCode(HttpStatus.BAD_REQUEST.value());
       res.setError(ex.getBody().getDetail());
+      res.setMessage(errors.size() > 1 ? errors : errors.get(0));
 
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
    }
-
-   // @ExceptionHandler(MethodArgumentValidException.class)
-   // public ResponseEntity<RestResponse<Object>> validError(MethodArgumentValidException.class)
 }

@@ -3,10 +3,10 @@ package com.duongpham26.demo.entity.dto;
 import jakarta.validation.constraints.NotBlank;
 
 public class LoginDTO {
-   @NotBlank(message = "username không để trống")
+   @NotBlank(message = "username không đượcđược để trống")
    private String username;
 
-   @NotBlank(message = "password không để trống")
+   @NotBlank(message = "password không được để trống")
    private String password;
 
    public String getUsername() {

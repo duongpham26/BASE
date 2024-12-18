@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 @RestController
 public class AuthController {
 
-   private AuthenticationManagerBuilder authenticationManagerBuilder;
+   private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
    public AuthController(AuthenticationManagerBuilder authenticationManagerBuilder) {
       this.authenticationManagerBuilder = authenticationManagerBuilder;
@@ -30,6 +30,7 @@ public class AuthController {
 
       // xác thực người dùng -> viết hàm loadUserByUserName 
       Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+      System.out.println("Authentication : " + authentication);
       return ResponseEntity.ok().body(loginDTO);
    }
 }
